@@ -3,4 +3,5 @@ name = "Election-maps"
 version = "0.1.0"
 dependencies = [
     "pyutils @ git+ssh://git@github.com/a96tudor/pyutils",
+    "flask"
 ]
