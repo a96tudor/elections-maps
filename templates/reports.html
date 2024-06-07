@@ -2,8 +2,12 @@
 <html lang="en">
 {% include 'head.html' %}
 <body>
-	{% include 'header.html' %}
-
+	<main>
+		{% if observer %}
+	        <h1>Salut, {{ observer.first_name }}!</h1>
+			<h2>Sectia de votare numarul {{ observer.voting_section_number }}</h2>
+		{% endif %}
+	</main>
 	<div class="container">
 	    <div class="dropdown">
 	        <h2 onclick="toggleDropdown('primar')">Voturi Primar</h2>
