@@ -1,3 +1,5 @@
+from typing import Optional
+
 class Observer:
 
     def __init__(
@@ -5,12 +7,14 @@ class Observer:
         first_name: str,
         last_name: str,
         phone_number: str,
-        voting_section_number: str
+        voting_section_number: str,
+        db_id: Optional[str] = None
     ):
         self.first_name = first_name
         self.last_name = last_name
         self.phone_number = phone_number
         self.voting_section_number = voting_section_number
+        self.db_id = db_id
 
     @classmethod
     def from_dict_csv(cls, observer: dict) -> "Observer":
@@ -23,11 +27,16 @@ class Observer:
 
     @classmethod
     def from_dict(cls, observer: dict) -> "Observer":
+        db_id = None
+        if observer.get("_id"):
+            db_id = str(observer.get("_id"))
+
         return cls(
             first_name=observer["firstName"],
             last_name=observer["lastName"],
             phone_number=observer["phoneNumber"],
-            voting_section_number=observer["votingSectionNumber"]
+            voting_section_number=observer["votingSectionNumber"],
+            db_id=db_id,
         )
 
     def to_dict(self) -> dict:
