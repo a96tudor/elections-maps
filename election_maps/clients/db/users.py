@@ -1,5 +1,7 @@
 from typing import Optional
 
+from bson.objectid import ObjectId
+
 from election_maps.clients.db.base import BaseDatabaseHandler
 from election_maps.entities.observer import Observer
 
@@ -21,7 +23,7 @@ class UsersDatabaseHandler(BaseDatabaseHandler):
         return None
 
     def get_user_by_id(self, user_id: str) -> Optional[Observer]:
-        query = {"_id": user_id}
+        query = {"_id": ObjectId(user_id)}
 
         cursor = self.find_one(query)
 

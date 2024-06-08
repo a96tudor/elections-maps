@@ -11,6 +11,7 @@ body {
     width: 80%;
     margin: auto;
     overflow: hidden;
+    position: relative;
 }
 .dropdown {
     background-color: #fbfbfb;

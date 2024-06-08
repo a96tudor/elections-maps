@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include 'head.html' %}
+
+<body>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        label, input[type="submit"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        input[type="tel"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+    <h2>Phone Number Form</h2>
+    <form id="phoneForm" action="/numarare" method="post">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('phoneForm').addEventListener('submit', function(event) {
+            var phoneInput = document.getElementById('phone').value;
+            var romanianPhonePattern = /^(\+40|0)(7\d{2}|\d{2})\d{6}$/;
+
+            if (!romanianPhonePattern.test(phoneInput)) {
+                alert('Please enter a valid Romanian phone number.');
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
