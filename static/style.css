@@ -83,69 +83,6 @@ body {
     border-radius: 5px;
     margin-left: 10px;
 }
-@media (max-width: 480px) {
-    .dropdown h2 {
-        font-size: 1em;
-        padding: 10px;
-    }
-    .dropdown-content {
-        padding: 6px;
-    }
-        .incrementor {
-        flex-direction: column;
-    }
-    .incrementor label, .incrementor input, .incrementor button {
-        margin: 10px 0;
-        text-align: center;
-    }
-    .incrementor button {
-        font-size: 1.2em;
-        padding: 10px;
-        width: 30%
-    }
-    .incrementor input[type="text"] {
-        font-size: 1em;
-        width: 30%;
-    }
-}
-@media (max-width: 768px) {
-    header {
-        height: 200px; /* Adjust height for smaller screens */
-    }
-
-    main {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 1.5em;
-    }
-
-    p {
-        font-size: 1em;
-    }
-    .incrementor {
-        flex-direction: column;
-        padding: 10px;
-    }
-    .incrementor label {
-        width: 100%;
-    }
-    .incrementor label, .incrementor input, .incrementor button {
-        margin: 10px 0;
-        text-align: center;
-    }
-    .incrementor button {
-        font-size: 1.2em;
-        padding: 10px;
-        width: 30%
-    }
-    .incrementor input[type="text"] {
-        font-size: 1em;
-        width: 30%;
-    }
-}
-
 header {
     position: relative;
     width: 100%;

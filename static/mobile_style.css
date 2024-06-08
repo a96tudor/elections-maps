@@ -1,0 +1,56 @@
+@media (max-width: 480px) {
+    .dropdown h2 {
+        font-size: 1em;
+        padding: 10px;
+    }
+    .dropdown-content {
+        padding: 6px;
+    }
+    .incrementor {
+        flex-direction: column;
+    }
+    .incrementor label, .incrementor input, .incrementor button {
+        margin: 5px 0;
+        text-align: center;
+        font-size: 1em;
+    }
+    .incrementor button {
+        font-size: 1em;
+        padding: 5px;
+        width: 25%
+    }
+    .incrementor input[type="text"] {
+        font-size: 1em;
+        width: 25%;
+    }
+}
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5em;
+    }
+
+    p {
+        font-size: 1em;
+    }
+    .incrementor {
+        flex-direction: column;
+        padding: 10px;
+    }
+    .incrementor label {
+        width: 100%;
+    }
+    .incrementor label, .incrementor input, .incrementor button {
+        font-size: 1em;
+        margin: 5px 0;
+        text-align: center;
+    }
+    .incrementor button {
+        font-size: 1em;
+        padding: 5px;
+        width: 30%
+    }
+    .incrementor input[type="text"] {
+        font-size: 1em;
+        width: 30%;
+    }
+}
