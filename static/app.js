@@ -16,5 +16,6 @@ function increment(type, id) {
 
 function decrement(type, id) {
     let numberInput = document.getElementById(id);
-    numberInput.value = parseInt(numberInput.value) - 1;
+    let newValue = parseInt(numberInput.value) - 1;
+    numberInput.value = newValue > 0 ? newValue : 0;
 }
