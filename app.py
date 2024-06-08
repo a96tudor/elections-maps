@@ -9,8 +9,6 @@ users_db_handler = None
 @app.route('/numarare/<user_id>', methods=["GET"])
 def count_main(user_id):
     observer = users_db_handler.get_user_by_id(user_id)
-    print(user_id)
-    print(observer)
 
     if observer:
         return render_template("reports.html", observer=observer)
@@ -24,7 +22,6 @@ def count_post():
     phone_number = request.values.get("phone")
 
     observer = users_db_handler.get_user_by_phone_number(phone_number)
-    print(observer)
 
     if observer is None:
         return redirect("/numarare")
