@@ -96,7 +96,7 @@ body {
     }
     .incrementor label, .incrementor input, .incrementor button {
         margin: 10px 0;
-        width: 100%;
+        width: 30%;
         text-align: center;
     }
     .incrementor button {
@@ -105,7 +105,7 @@ body {
     }
     .incrementor input[type="text"] {
         font-size: 1em;
-        width: 100%;
+        width: 30%;
     }
 }
 @media (max-width: 768px) {
