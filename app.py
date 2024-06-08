@@ -8,7 +8,10 @@ users_db_handler = None
 
 @app.route('/numarare/<user_id>', methods=["GET"])
 def count_main(user_id):
-    observer = users_db_handler.get_user_by_id(user_id)
+    try:
+        observer = users_db_handler.get_user_by_id(user_id)
+    except Exception:
+        return redirect("/numarare")
 
     if observer:
         return render_template("reports.html", observer=observer)
