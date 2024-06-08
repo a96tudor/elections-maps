@@ -55,4 +55,4 @@ def count_home():
 
 if __name__ == '__main__':
     users_db_handler = UsersDatabaseHandler()
-    app.run(host="0.0.0.0", debug=True, port=3000)
+    app.run(host="0.0.0.0", debug=True, port=8000)
