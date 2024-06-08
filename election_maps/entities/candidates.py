@@ -8,9 +8,15 @@ class Candidate:
 
     @classmethod
     def from_dict(cls, candidate: dict) -> "Candidate":
-        if "firstName" and "lastName" in candidate:
+        if candidate.get("firstName") and candidate.get("lastName"):
             return IndividualCandidate.from_dict(candidate)
         return CouncilCandidate.from_dict(candidate)
+
+    @classmethod
+    def from_dict_csv(cls, candidate: dict) -> "Candidate":
+        if candidate.get("Nume") and candidate.get("Prenume"):
+            return IndividualCandidate.from_dict_csv(candidate)
+        return CouncilCandidate.from_dict_csv(candidate)
 
     @abc.abstractmethod
     def to_dict(self) -> dict:

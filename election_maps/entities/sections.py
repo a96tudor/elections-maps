@@ -44,7 +44,18 @@ class VotingSection:
             ),
             VotingResultCollection.from_dict(
                 voting_section["results"]["county_council"],
-            )
+            ),
+            db_id=db_id,
+        )
+
+    @classmethod
+    def from_dict_thin(cls, voting_section) -> "VotingSection":
+        return cls(
+            voting_section["number"],
+            voting_section["name"],
+            voting_section["searchable_name"],
+            voting_section["latitude"],
+            voting_section["longitude"],
         )
 
     def to_dict(self) -> dict:
