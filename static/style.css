@@ -92,3 +92,10 @@ header {
 .disable-dbl-tap-zoom {
   touch-action: manipulation;
 }
+
+.input-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
