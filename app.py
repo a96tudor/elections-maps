@@ -42,9 +42,6 @@ def count_post():
 
     observer = users_db_handler.get_user_by_phone_number(phone_number)
 
-    print(observer)
-    print(observer.db_id)
-
     if observer is None:
         return redirect("/numarare")
     else:
