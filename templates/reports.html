@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include 'head.html' %}
+{% macro count_or_zero(count) %}
+	{% if count %}
+		count
+	{% else %}
+		0
+	{% endif %}
+{%- endmacro -%}
 <body>
 	<div class="container">
 		{% if observer %}
@@ -20,7 +27,7 @@
 		                    -
 	                    </button>
 	                    <input type="text" id="{{ candidate.id }}"
-	                           value="{{ candidate.votes_count }}" readonly>
+	                           value="{{ count_or_zero(candidate.votes_count) }}" readonly>
 	                    <button onclick='increment("mayor", "{{ candidate.id }}")'>
 		                    +
 	                    </button>

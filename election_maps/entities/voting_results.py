@@ -38,3 +38,6 @@ class VotingResultCollection(list):
     @property
     def sorted(self):
         return sorted(self, key=lambda x: -x.votes)
+
+    def to_dicts(self) -> [dict]:
+        return [result.to_dict() for result in self]

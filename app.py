@@ -1,9 +1,23 @@
+import csv
+
 from flask import Flask, render_template, request, redirect
 
 from election_maps.clients.db.users import UsersDatabaseHandler
+from election_maps.entities.candidates import MayorCandidate, MayorCandidates
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 users_db_handler = None
+
+
+def get_mayor_candidates():
+    result = MayorCandidates()
+    with open("mayor_candidates.csv") as stream:
+        reader = csv.DictReader(stream)
+
+        for candidate in reader:
+            result.append(MayorCandidate.from_dict_csv(candidate))
+
+    return result
 
 
 @app.route('/numarare/<user_id>', methods=["GET"])
@@ -14,7 +28,9 @@ def count_main(user_id):
         return redirect("/numarare")
 
     if observer:
-        return render_template("reports.html", observer=observer)
+        return render_template(
+            "reports.html", observer=observer, mayor_candidates=get_mayor_candidates()
+        )
     else:
         return redirect("/numarare")
 
@@ -25,6 +41,9 @@ def count_post():
     phone_number = request.values.get("phone")
 
     observer = users_db_handler.get_user_by_phone_number(phone_number)
+
+    print(observer)
+    print(observer.db_id)
 
     if observer is None:
         return redirect("/numarare")

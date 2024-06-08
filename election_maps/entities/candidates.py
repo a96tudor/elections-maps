@@ -1,11 +1,16 @@
 class MayorCandidate:
-    def __init__(self, name: str, party: str):
-        self.name = name
+    def __init__(self, first_name: str, last_name: str, party: str):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.name = f"{self.last_name}, {self.first_name}"
         self.party = party
+        self.id = f"{self.first_name}.{self.last_name}.{self.party.replace(' ', '')}"
 
     @classmethod
     def from_dict_csv(cls, candidate: dict) -> "MayorCandidate":
-        return cls(candidate['Nume'], candidate['Partid'])
+        return cls(
+            candidate['Prenume'], candidate['Nume'], candidate['Partid']
+        )
 
     @classmethod
     def from_dict(cls, candidate: dict) -> "MayorCandidate":
