@@ -6,7 +6,9 @@ from election_maps.entities.voting_results import VotingResultCollection
 class VotingSection:
     def __init__(
         self, number, name, searchable_name, latitude=None, longitude=None,
-        mayor_voting_results=None
+        mayor_results=None, local_council_results=None,
+        county_council_president_results=None,
+        county_council_results=None, db_id=None,
     ):
         self.number = number
         self.name = name
@@ -14,101 +16,53 @@ class VotingSection:
         self.latitude = latitude
         self.longitude = longitude
 
-        self.voting_information = None
-        self.icon_color = None
-        self._mayor_voting_results = mayor_voting_results
-        self._local_council_voting_results = None
+        self.mayor_results = mayor_results
+        self.local_council_results = local_council_results
+        self.county_council_president_results = county_council_president_results
+        self.county_council_results = county_council_results
 
-    @property
-    def mayor_voting_results(self):
-        return self._mayor_voting_results
+        self.db_id = db_id
 
-    @mayor_voting_results.setter
-    def mayor_voting_results(self, mvr):
-        self._mayor_voting_results = mvr.sorted
+    @classmethod
+    def from_dict(cls, voting_section) -> "VotingSection":
+        db_id = None
+        if voting_section.get("_id"):
+            db_id = str(voting_section.get("_id"))
 
-        # TODO: Uncomment once the monitoring logic is done
-        # for vr in self._mayor_voting_results:
-        #     vr.percentage = vr.votes / self.voting_information.total_voters
+        return cls(
+            voting_section["number"],
+            voting_section["name"],
+            voting_section["searchable_name"],
+            voting_section["latitude"],
+            voting_section["longitude"],
+            VotingResultCollection.from_dict(voting_section["results"]["mayor"]),
+            VotingResultCollection.from_dict(
+                voting_section["results"]["local_council"],
+            ),
+            VotingResultCollection.from_dict(
+                voting_section["results"]["county_council_president"],
+            ),
+            VotingResultCollection.from_dict(
+                voting_section["results"]["county_council"],
+            )
+        )
 
-    @property
-    def local_council_voting_results(self):
-        return self._local_council_voting_results
-
-    @local_council_voting_results.setter
-    def local_council_voting_results(self, lcvr):
-        self._local_council_voting_results = lcvr.sorted
-
-        # TODO: Uncomment once the monitoring logic is done
-        # for vr in self._local_council_voting_results:
-        #     vr.percentage = vr.votes / self.voting_information.total_voters
-
-    # TODO: Uncomment for monitoring logic
-    # @property
-    # def marker(self):
-    #     jinja_env = jinja2.Environment(loader=jinja2.BaseLoader)
-    #     rendered_html = jinja_env.from_string(POPUP_HTML).render(
-    #         title=f"Sectia {self.number} - {self.name}",
-    #         total_possible_voters=self.voting_information.total_possible_voters,
-    #         attendance=self.voting_information.total_voters,
-    #         attendance_percentage=self.voting_information.attendance_percentage,
-    #         genders_plot_b64=from_png_file_to_b64(
-    #             os.path.join("plots", "genders", f"{self.number}.png"),
-    #         ),
-    #         ages_plot_b64=from_png_file_to_b64(
-    #             os.path.join("plots", "ages", f"{self.number}.png"),
-    #         ),
-    #         mayor_voting_results=self.mayor_voting_results,
-    #         local_council_voting_results=self.local_council_voting_results,
-    #     )
-    #
-    #     popup = folium.Popup(folium.IFrame(rendered_html, width=500, height=250))
-    #
-    #     return folium.Marker(
-    #         location=[self.latitude, self.longitude],
-    #         icon=plugins.BeautifyIcon(
-    #             background_color=self.icon_color,
-    #             icon_shape="marker",
-    #         ),
-    #         radius=3,
-    #         popup=popup,
-    #         tooltip=self.voting_information.attendance_percentage,
-    #         lazy=True,
-    #     )
-
-    def to_dict(self):
+    def to_dict(self) -> dict:
         return {
             "number": self.number,
             "name": self.name,
             "searchable_name": self.searchable_name,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "mayorVotingResults": self.mayor_voting_results.to_dicts(),
-            "localCouncilVotingResults": self.local_council_voting_results.to_dicts(),
+            "results": {
+                "mayor": self.mayor_results.to_dict(),
+                "local_council": self.local_council_results.to_dict(),
+                "county_council_president": (
+                    self.county_council_president_results.to_dict()
+                ),
+                "county_council": self.county_council_results.to_dict()
+            }
         }
-
-    @classmethod
-    def from_dict_csv(cls, voting_section):
-        return cls(
-            number=voting_section["number"],
-            name=voting_section["name"],
-            searchable_name=voting_section["searchable_name"],
-            latitude=float(voting_section["latitude"]),
-            longitude=float(voting_section["longitude"]),
-        )
-
-    @classmethod
-    def from_dict(cls, voting_section):
-        return cls(
-            number=voting_section["number"],
-            name=voting_section["name"],
-            searchable_name=voting_section["searchable_name"],
-            latitude=voting_section["latitude"],
-            longitude=voting_section["longitude"],
-            mayor_voting_results=VotingSectionsCollection.from_dicts(
-                voting_section["mayorVotingResults"]
-            )
-        )
 
 
 class VotingSectionsCollection(list):
@@ -124,15 +78,3 @@ class VotingSectionsCollection(list):
 
     def get(self, number):
         return self._by_number[number]
-
-    @property
-    def min_attendance(self):
-        return min(vt.voting_information.attendance for vt in self)
-
-    @property
-    def max_attendance(self):
-        return max(vt.voting_information.attendance for vt in self)
-
-    @property
-    def median_attendance(self):
-        return statistics.median([vt.voting_information.attendance for vt in self])
