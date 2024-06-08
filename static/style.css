@@ -96,12 +96,12 @@ body {
     }
     .incrementor label, .incrementor input, .incrementor button {
         margin: 10px 0;
-        width: 30%;
         text-align: center;
     }
     .incrementor button {
         font-size: 1.2em;
         padding: 10px;
+        width: 30%
     }
     .incrementor input[type="text"] {
         font-size: 1em;
