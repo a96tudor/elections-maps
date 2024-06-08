@@ -3,5 +3,13 @@ name = "Election-maps"
 version = "0.1.0"
 dependencies = [
     "pyutils @ git+ssh://git@github.com/a96tudor/pyutils",
-    "flask"
+    "flask",
+    "boto3",
+    "flask-cors",
+    "certifi",
+    "pymongo[srv]"
 ]
+
+
+[tool.setuptools]
+py-modules = ["election_maps", "scripts"]
