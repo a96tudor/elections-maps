@@ -152,14 +152,6 @@ header {
     height: 300px; /* Adjust the height as needed */
 }
 
-.banner {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
 }
-
-main {
-    padding: 20px;
-    text-align: center;
-}
-
