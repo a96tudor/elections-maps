@@ -25,7 +25,11 @@ def add_action(user_id):
 @app.route('/numarare/<user_id>', methods=["GET"])
 def count_main(user_id):
     return build_counting_user_page(
-        users_db_handler, user_id, results_db_handler, get_api_url(app),
+        users_db_handler=users_db_handler,
+        user_id=user_id,
+        results_db_handler=results_db_handler,
+        api_url=get_api_url(app),
+        raw_results_db_handler=raw_results_db_handler,
     )
 
 

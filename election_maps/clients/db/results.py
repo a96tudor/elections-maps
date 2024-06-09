@@ -12,3 +12,9 @@ class ResultsDatabaseHandler(BaseDatabaseHandler):
         cursor = self.find_one(query)
 
         return VotingSection.from_dict(cursor)
+
+    def update_section(self, section_number: str, results_section: dict):
+        query = {"number": section_number}
+        new_values = {"results": results_section}
+
+        self.update_one(query, new_values)

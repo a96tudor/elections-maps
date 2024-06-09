@@ -63,15 +63,24 @@ class VotingSection:
             "searchable_name": self.searchable_name,
             "latitude": self.latitude,
             "longitude": self.longitude,
-            "results": {
-                "mayor": self.mayor_results.to_dict(),
-                "local_council": self.local_council_results.to_dict(),
-                "county_council_president": (
-                    self.county_council_president_results.to_dict()
-                ),
-                "county_council": self.county_council_results.to_dict()
-            }
+            "results": self.results_as_dict()
         }
+
+    def results_as_dict(self) -> dict:
+        return {
+            "mayor": self.mayor_results.to_dict(),
+            "local_council": self.local_council_results.to_dict(),
+            "county_council_president": (
+                self.county_council_president_results.to_dict()
+            ),
+            "county_council": self.county_council_results.to_dict()
+        }
+
+    def __hash__(self):
+        return int(self.number)
+
+    def __eq__(self, other):
+        return self.number == other.number
 
 
 class VotingSectionsCollection(list):

@@ -2,12 +2,15 @@ from flask import render_template, redirect
 
 from election_maps.clients.db.users import UsersDatabaseHandler
 from election_maps.clients.db.results import ResultsDatabaseHandler
+from election_maps.clients.db.results_raw import RawResultsDatabaseHandler
+from election_maps.utils import process_actions
 
 
 def build_counting_user_page(
     users_db_handler: UsersDatabaseHandler,
-    user_id: str,
     results_db_handler: ResultsDatabaseHandler,
+    raw_results_db_handler: RawResultsDatabaseHandler,
+    user_id: str,
     api_url: str,
 ):
     try:
@@ -16,6 +19,7 @@ def build_counting_user_page(
         return redirect("/numarare")
 
     if observer:
+        process_actions(raw_results_db_handler, results_db_handler, user_id)
         try:
             voting_section_status = results_db_handler.get_voting_section_by_number(
                 observer.voting_section_number

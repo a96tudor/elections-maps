@@ -1,4 +1,7 @@
+from typing import Optional
+
 from election_maps.entities.candidates import Candidate
+from election_maps.types import ObserverActionType
 
 
 class VotingResult:
@@ -29,6 +32,12 @@ class VotingResult:
     def to_dict(self) -> dict:
         return {"candidate": self.candidate.to_dict(), "votes": self.votes}
 
+    def process_actions(self, actions):
+        decrement_actions = actions.decrement_count
+        increment_actions = actions.increment_count
+
+        self.votes += increment_actions - decrement_actions
+
 
 class VotingResultCollection(list):
     def __init__(self, invalid_votes):
@@ -54,3 +63,10 @@ class VotingResultCollection(list):
             voting_result_collection.append(VotingResult.from_dict(valid_vote))
 
         return voting_result_collection
+
+    def get_by_id(self, result_id: str) -> Optional[VotingResult]:
+        for result in self:
+            if result.id == result_id:
+                return result
+
+        return None

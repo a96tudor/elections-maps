@@ -20,6 +20,17 @@ class Candidate:
             return IndividualCandidate.from_dict_csv(candidate)
         return CouncilCandidate.from_dict_csv(candidate)
 
+    @classmethod
+    def from_id(cls, candidate_id: str) -> "Candidate":
+        elements = candidate_id.split(".")
+        if len(elements) == 0:
+            return CouncilCandidate(name=candidate_id)
+        return IndividualCandidate(
+            last_name=elements[0],
+            first_name=elements[1],
+            party=elements[2],
+        )
+
     @abc.abstractmethod
     def to_dict(self) -> dict:
         ...

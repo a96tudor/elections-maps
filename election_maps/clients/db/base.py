@@ -1,4 +1,5 @@
 from pyutils.database.mongo.client_handler import MongoClientHandler
+from bson.objectid import ObjectId
 
 from election_maps.clients.aws.config import get_database_secrets
 
@@ -19,3 +20,7 @@ def _get_aws_config(collection_secret_name: str) -> dict:
 class BaseDatabaseHandler(MongoClientHandler):
     def __init__(self, collection_secret_name: str):
         super().__init__(**_get_aws_config(collection_secret_name))
+
+    @staticmethod
+    def id_from_string(string: str) -> ObjectId:
+        return ObjectId(string)
