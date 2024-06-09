@@ -8,7 +8,7 @@ from election_maps.custom_types import ObserverActionStatusType, VotingSessionTy
 
 
 LOCAL_URL = 'http://127.0.0.1:8000'
-SERVER_URL = ''  # TODO: Fill this in once we know where we deploy
+SERVER_URL = 'https://app.noiploiestenii.ro/'
 
 
 def get_api_url(app: Flask) -> str:

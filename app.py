@@ -50,8 +50,13 @@ def count_home():
     return render_template("phone_number_form.html")
 
 
+@app.route('/', methods=["GET"])
+def home():
+    return redirect("/numarare")
+
+
 if __name__ == '__main__':
     users_db_handler = UsersDatabaseHandler()
     results_db_handler = ResultsDatabaseHandler()
     raw_results_db_handler = RawResultsDatabaseHandler()
-    app.run(host="0.0.0.0", debug=True, port=8000)
+    app.run(host="0.0.0.0", port=8000)

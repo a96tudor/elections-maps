@@ -19,6 +19,8 @@ RUN pip install git+https://github.com/a96tudor/elections-maps.git
 COPY app.py .
 COPY election_maps ./election_maps
 COPY tmp/aws_creds /root/.aws/credentials
+COPY static ./static
+COPY templates ./templates
 
 
 # Specify the command to run on container start
