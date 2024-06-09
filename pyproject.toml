@@ -1,5 +1,5 @@
 [project]
-name = "Election-maps"
+name = "election_maps"
 version = "0.1.0"
 dependencies = [
     "pyutils @ git+https://github.com/a96tudor/pyutils.git",
