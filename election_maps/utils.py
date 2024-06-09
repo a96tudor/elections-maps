@@ -24,6 +24,7 @@ RESULTS_TO_UPDATE = {
     VotingSessionType.COUNTY_COUNCIL_PRESIDENT: (
         lambda vs: vs.county_council_president_results
     ),
+    VotingSessionType.EUROPEAN_PARLIAMENT: lambda vs: vs.european_parliament_results,
 }
 
 

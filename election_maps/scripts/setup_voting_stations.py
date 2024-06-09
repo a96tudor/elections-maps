@@ -42,6 +42,7 @@ def parse_arguments():
     argument_parser.add_argument("--local-council-candidates", required=True)
     argument_parser.add_argument("--county-council-candidates", required=True)
     argument_parser.add_argument("--county-council-president-candidates", required=True)
+    argument_parser.add_argument("--european-parliament-candidates", required=True)
 
     return argument_parser.parse_args()
 
@@ -60,12 +61,16 @@ def add_initial_voting_results_to_voting_sections(
     county_council_president_results_init = load_initial_voting_results(
         args.county_council_president_candidates
     )
+    european_parliament_results_init = load_initial_voting_results(
+        args.european_parliament_candidates
+    )
 
     for vt in voting_sections:
         vt.mayor_results = mayor_results_init
         vt.local_council_results = local_council_results_init
         vt.county_council_results = county_council_results_init
         vt.county_council_president_results = county_council_president_results_init
+        vt.european_parliament_results = european_parliament_results_init
 
     return voting_sections
 

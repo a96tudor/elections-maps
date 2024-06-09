@@ -6,7 +6,7 @@ import boto3
 from botocore.exceptions import ClientError
 
 from election_maps.clients.aws.constants import (
-    PROFILE_NAME, DATABASE_SECRET_NAME, REGION_NAME
+    PROFILE_NAME, DATABASE_SECRET_NAME, REGION_NAME, GENERAL_SECRET_NAME
 )
 
 
@@ -40,3 +40,21 @@ def get_database_secrets():
         raise e
 
     return AWSSecretsConfig(get_secret_value_response["SecretString"])
+
+
+def get_whatsapp_link() -> str:
+    session = boto3.session.Session(profile_name=PROFILE_NAME)
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=REGION_NAME
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=GENERAL_SECRET_NAME
+        )
+    except ClientError as e:
+        raise e
+
+    return AWSSecretsConfig(get_secret_value_response["SecretString"]).whatsapp_link
+

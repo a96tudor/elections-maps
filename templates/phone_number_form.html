@@ -2,7 +2,7 @@
 <html lang="en">
 {% include 'head.html' %}
 
-<body>
+<body class="disable-dbl-tap-zoom">
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phone Number Form</title>
@@ -51,7 +51,6 @@
         }
     </style>
 
-    <h2>Phone Number Form</h2>
     <form id="phoneForm" action="/numarare" method="post">
         <label for="phone">Număr de telefon:</label>
         <input type="tel" id="phone" name="phone" required>

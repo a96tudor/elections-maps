@@ -6,7 +6,8 @@ class VotingSection:
         self, number, name, searchable_name, latitude=None, longitude=None,
         mayor_results=None, local_council_results=None,
         county_council_president_results=None,
-        county_council_results=None, db_id=None,
+        county_council_results=None, european_parliament_results=None,
+        db_id=None,
     ):
         self.number = number
         self.name = name
@@ -18,6 +19,7 @@ class VotingSection:
         self.local_council_results = local_council_results
         self.county_council_president_results = county_council_president_results
         self.county_council_results = county_council_results
+        self.european_parliament_results = european_parliament_results
 
         self.db_id = db_id
 
@@ -42,6 +44,9 @@ class VotingSection:
             ),
             VotingResultCollection.from_dict(
                 voting_section["results"]["county_council"],
+            ),
+            VotingResultCollection.from_dict(
+                voting_section["results"].get("european_parliament")
             ),
             db_id=db_id,
         )
@@ -73,7 +78,8 @@ class VotingSection:
             "county_council_president": (
                 self.county_council_president_results.to_dict()
             ),
-            "county_council": self.county_council_results.to_dict()
+            "county_council": self.county_council_results.to_dict(),
+            "european_parliament": self.european_parliament_results.to_dict(),
         }
 
     def __hash__(self):

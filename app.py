@@ -6,11 +6,18 @@ from election_maps.clients.db.results_raw import RawResultsDatabaseHandler
 from election_maps.web.builders.couting_user_page import build_counting_user_page
 from election_maps.web.processors.actions import process_post_action_request
 from election_maps.utils import get_api_url
+from election_maps.clients.aws.config import get_whatsapp_link
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 users_db_handler = None
 results_db_handler = None
 raw_results_db_handler = None
+whatsapp_link = None
+
+
+# @app.route("/private-counting/<section_number>", methods=["GET"])
+# def private_counting(section_number):
+#     pass
 
 
 @app.route("/numarare/action/<user_id>", methods=["POST"])
@@ -30,6 +37,7 @@ def count_main(user_id):
         results_db_handler=results_db_handler,
         api_url=get_api_url(app),
         raw_results_db_handler=raw_results_db_handler,
+        whatsapp_link=whatsapp_link,
     )
 
 
@@ -59,4 +67,6 @@ if __name__ == '__main__':
     users_db_handler = UsersDatabaseHandler()
     results_db_handler = ResultsDatabaseHandler()
     raw_results_db_handler = RawResultsDatabaseHandler()
-    app.run(host="0.0.0.0", port=8000)
+    whatsapp_link = get_whatsapp_link()
+    print(whatsapp_link)
+    app.run(host="0.0.0.0", port=8000, debug=True)

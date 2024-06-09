@@ -5,6 +5,10 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
+    touch-action: manipulation;
+}
+div {
+    touch-action: manipulation;
 }
 .container {
     width: 80%;
@@ -102,4 +106,17 @@ header {
 
 .invalid-votes-container {
     background-color: rgba(123, 122, 140, 0.2);
+}
+
+.whatsapp-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
 }

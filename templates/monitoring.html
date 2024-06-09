@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage with Closable Banner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .banner {
+            background-color: #ff9800;
+            color: white;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5722;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 3px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner" id="banner">
+        <button class="close-button" onclick="closeBanner()">X</button>
+        <p>Welcome to our website! Check out our latest updates and offers.</p>
+    </div>
+
+    <div class="content">
+        <h1>Main Content of the Webpage</h1>
+        <p>This is where the main content of your webpage will go.</p>
+    </div>
+
+    <script>
+        function closeBanner() {
+            var banner = document.getElementById('banner');
+            banner.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

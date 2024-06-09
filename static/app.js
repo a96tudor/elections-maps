@@ -26,7 +26,7 @@ function decrement(type, id) {
     let numberInput = document.getElementById(elementId);
     let newValue = parseInt(numberInput.value) - 1;
     numberInput.value = newValue > 0 ? newValue : 0;
-    if (newValue > 0) submitDecrementAction(type, id)
+    if (newValue >= 0) submitDecrementAction(type, id)
 }
 
 
@@ -77,4 +77,10 @@ function submitAction(action) {
         .catch(error => {
             console.error("Failed to submit action", error)
         })
+}
+
+
+function openWhatsAppGroup() {
+    var whatsappGroupLink = WHATSAPP_LINK;
+    window.open(WHATSAPP_LINK, "_blank");
 }

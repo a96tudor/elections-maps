@@ -11,6 +11,7 @@ class VotingSessionType(Enum):
     LOCAL_COUNCIL = "local_council"
     COUNTY_COUNCIL = "county_council"
     COUNTY_COUNCIL_PRESIDENT = "county_council_president"
+    EUROPEAN_PARLIAMENT = "european_parliament"
 
 
 class ObserverActionStatusType(Enum):

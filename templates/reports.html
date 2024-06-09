@@ -7,7 +7,11 @@
 	        <h1>Salut, {{ observer.first_name }}!</h1>
 			<h2>Sectia de votare numarul {{ observer.voting_section_number }}</h2>
 		{% endif %}
+		<button class="whatsapp-button" onclick="openWhatsAppGroup()">
+			Raportează o neregulă!
+		</button>
 	</div>
+
 	<div class="container">
 	    <div class="dropdown">
 	        {% include 'counting/mayor.html' %}
@@ -21,11 +25,15 @@
 	    <div class="dropdown">
 			{% include 'counting/county_council.html' %}
 	    </div>
+		<div class="dropdown">
+			{% include 'counting/european_parliament.html' %}
+	    </div>
 	</div>
 
 	<script>
 		const API_URL = "{{ api_url }}"
 		const OBSERVER_ID = "{{ observer.id }}"
+		const WHATSAPP_LINK = "{{ whatsapp_link }}"
 	</script>
 
 </body>

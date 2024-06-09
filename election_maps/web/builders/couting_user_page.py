@@ -12,6 +12,7 @@ def build_counting_user_page(
     raw_results_db_handler: RawResultsDatabaseHandler,
     user_id: str,
     api_url: str,
+    **kwargs,
 ):
     try:
         observer = users_db_handler.get_user_by_id(user_id)
@@ -36,6 +37,9 @@ def build_counting_user_page(
             "county_council_president": (
                 voting_section_status.county_council_president_results.invalid_votes
             ),
+            "european_parliament": (
+                voting_section_status.european_parliament_results.invalid_votes
+            )
         }
 
         return render_template(
@@ -47,8 +51,12 @@ def build_counting_user_page(
             county_council_president_candidates=(
                 voting_section_status.county_council_president_results
             ),
+            european_parliament_candidates=(
+                voting_section_status.european_parliament_results
+            ),
             invalid_votes=invalid_votes,
             api_url=api_url,
+            **kwargs,
         )
     else:
         return redirect("/numarare")
