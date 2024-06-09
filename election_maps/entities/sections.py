@@ -1,5 +1,3 @@
-import statistics
-
 from election_maps.entities.voting_results import VotingResultCollection
 
 

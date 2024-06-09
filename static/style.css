@@ -99,3 +99,7 @@ header {
     justify-content: center;
     padding: 10px;
 }
+
+.invalid-votes-container {
+    background-color: rgba(123, 122, 140, 0.2);
+}

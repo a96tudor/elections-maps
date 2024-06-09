@@ -15,6 +15,10 @@ class VotingResult:
     def name(self) -> str:
         return self.candidate.name
 
+    @property
+    def id(self) -> str:
+        return self.candidate.id
+
     @classmethod
     def from_dict(cls, voting_result):
         return cls(

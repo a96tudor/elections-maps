@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include 'head.html' %}
-{% macro count_or_zero(count) %}
-	{% if count %}
-		return count
-	{% else %}
-		return 0
-	{% endif %}
-{%- endmacro -%}
 <body>
 	<div class="container">
 		{% if observer %}
@@ -17,91 +10,16 @@
 	</div>
 	<div class="container">
 	    <div class="dropdown">
-	        <h2 onclick="toggleDropdown('primar')">Voturi Primar</h2>
-	        <div class="dropdown-content" id="primar">
-		        {% for candidate in mayor_candidates %}
-	            <div class="incrementor disable-dbl-tap-zoom ">
-	                <label for="{{ candidate.id }}"> {{ candidate.name }}</label>
-	                <div class=" input-inline disable-dbl-tap-zoom ">
-	                    <button onclick='decrement("mayor", "{{ candidate.id }}")'
-	                            class="disable-dbl-tap-zoom">
-		                    -
-	                    </button>
-	                    <input type="text" id="{{ candidate.id }}"
-	                           class="disable-dbl-tap-zoom "
-	                           value="{{ count_or_zero(candidate.votes_count) }}"
-	                           readonly>
-	                    <button onclick='increment("mayor", "{{ candidate.id }}")'
-	                            class="disable-dbl-tap-zoom">
-		                    +
-	                    </button>
-	                </div>
-	            </div>
-		        {% endfor %}
-	        </div>
+	        {% include 'counting/mayor.html' %}
 	    </div>
 	    <div class="dropdown">
-		    <h2 onclick="toggleDropdown('cl')">Voturi Consiliul local</h2>
-		    <div class="dropdown-content" id="cl">
-			    {% for candidate in local_council_candidates %}
-	            <div class="incrementor">
-	                <label for="{{ candidate.id }}"> {{ candidate.name }}</label>
-	                <div class="input-inline-1">
-	                    <button onclick='decrement("cl", "{{ candidate.id }}")'>
-		                    -
-	                    </button>
-	                    <input type="text" id="{{ candidate.id }}"
-	                           value="{{ candidate.votes_count }}" readonly>
-	                    <button onclick='increment("cl", "{{ candidate.id }}")'>
-		                    +
-	                    </button>
-	                </div>
-	            </div>
-		        {% endfor %}
-		    </div>
-
-
+		    {% include 'counting/local_council.html' %}
 	    </div>
 	    <div class="dropdown">
-	        <h2 onclick="toggleDropdown('pres-cj')">Voturi Presedintele Consiliului
-	            Jutdetean</h2>
-	        <div class="dropdown-content" id="pres-cj">
-			    {% for candidate in county_council_president_candidates %}
-	            <div class="incrementor">
-	                <label for="{{ candidate.id }}"> {{ candidate.name }}</label>
-	                <div class="input-inline-1">
-	                    <button onclick='decrement("cj-pres", "{{ candidate.id }}")'>
-		                    -
-	                    </button>
-	                    <input type="text" id="{{ candidate.id }}"
-	                           value="{{ candidate.votes_count }}" readonly>
-	                    <button onclick='increment("cj-pres", "{{ candidate.id }}")'>
-		                    +
-	                    </button>
-	                </div>
-	            </div>
-		        {% endfor %}
-	        </div>
+		    {% include 'counting/county_council_president.html' %}
 	    </div>
 	    <div class="dropdown">
-	        <h2 onclick="toggleDropdown('cj')">Voturi Consiliul Judetean</h2>
-	        <div class="dropdown-content" id="cj">
-			    {% for candidate in county_council_candidates %}
-	            <div class="incrementor">
-	                <label for="{{ candidate.id }}"> {{ candidate.name }}</label>
-	                <div class="input-inline-1">
-	                    <button onclick='decrement("cj", "{{ candidate.id }}")'>
-		                    -
-	                    </button>
-	                    <input type="text" id="{{ candidate.id }}"
-	                           value="{{ candidate.votes_count }}" readonly>
-	                    <button onclick='increment("cj", "{{ candidate.id }}")'>
-		                    +
-	                    </button>
-	                </div>
-	            </div>
-		        {% endfor %}
-	        </div>
+			{% include 'counting/county_council.html' %}
 	    </div>
 	</div>
 

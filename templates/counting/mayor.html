@@ -1,0 +1,39 @@
+<h2 onclick="toggleDropdown('primar')">Voturi Primar</h2>
+<div class="dropdown-content" id="primar">
+    <div class="incrementor disable-dbl-tap-zoom invalid-votes-container">
+        <label for="mayor.invalid-votes"> Voturi nule </label>
+        <div class=" input-inline disable-dbl-tap-zoom ">
+            <button onclick='decrement("mayor", "invalid_votes")'
+                    class="disable-dbl-tap-zoom">
+                -
+            </button>
+            <input type="text" id="mayor.invalid-votes"
+                   class="disable-dbl-tap-zoom "
+                   value="{{ invalid_votes['mayor'] }}"
+                   readonly>
+            <button onclick='increment("mayor", "invalid_votes")'
+                    class="disable-dbl-tap-zoom">
+                +
+            </button>
+        </div>
+    </div>
+    {% for candidate in mayor_candidates %}
+    <div class="incrementor disable-dbl-tap-zoom ">
+        <label for="mayor.{{ candidate.id }}"> {{ candidate.name }}</label>
+        <div class=" input-inline disable-dbl-tap-zoom ">
+            <button onclick='decrement("mayor", "{{ candidate.id }}")'
+                    class="disable-dbl-tap-zoom">
+                -
+            </button>
+            <input type="text" id="mayor.{{ candidate.id }}"
+                   class="disable-dbl-tap-zoom "
+                   value="{{ candidate.votes }}"
+                   readonly>
+            <button onclick='increment("mayor", "{{ candidate.id }}")'
+                    class="disable-dbl-tap-zoom">
+                +
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>

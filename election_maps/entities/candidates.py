@@ -6,6 +6,8 @@ class Candidate:
     def __init__(self, name: str):
         self.name = name
 
+        self.id = None
+
     @classmethod
     def from_dict(cls, candidate: dict) -> "Candidate":
         if candidate.get("firstName") and candidate.get("lastName"):
@@ -56,6 +58,8 @@ class CouncilCandidate(Candidate):
 
         if name is None and party is None:
             raise Exception("At least one of name and party should be provided")
+
+        self.id = self.name
 
     @classmethod
     def from_dict_csv(cls, candidate: dict) -> "CouncilCandidate":
