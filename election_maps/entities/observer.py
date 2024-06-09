@@ -15,6 +15,7 @@ class Observer:
         self.phone_number = phone_number
         self.voting_section_number = voting_section_number
         self.db_id = db_id
+        self.id = db_id
 
     @classmethod
     def from_dict_csv(cls, observer: dict) -> "Observer":

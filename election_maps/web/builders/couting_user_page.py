@@ -8,6 +8,7 @@ def build_counting_user_page(
     users_db_handler: UsersDatabaseHandler,
     user_id: str,
     results_db_handler: ResultsDatabaseHandler,
+    api_url: str,
 ):
     try:
         observer = users_db_handler.get_user_by_id(user_id)
@@ -43,6 +44,7 @@ def build_counting_user_page(
                 voting_section_status.county_council_president_results
             ),
             invalid_votes=invalid_votes,
+            api_url=api_url,
         )
     else:
         return redirect("/numarare")
