@@ -3,9 +3,9 @@ name = "election_maps"
 version = "0.1.0"
 dependencies = [
     "pyutils @ git+https://github.com/a96tudor/pyutils.git",
-    "flask",
+    "flask==3.0.3",
     "boto3",
-    "flask-cors",
+    "flask-cors==4.0.1",
     "certifi",
     "pymongo[srv]",
     "folium"

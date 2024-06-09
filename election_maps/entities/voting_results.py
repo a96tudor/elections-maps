@@ -1,7 +1,7 @@
 from typing import Optional
 
 from election_maps.entities.candidates import Candidate
-from election_maps.types import ObserverActionType
+from election_maps.custom_types import ObserverActionType
 
 
 class VotingResult:

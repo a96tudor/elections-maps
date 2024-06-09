@@ -1,7 +1,7 @@
 import datetime
 from typing import Optional, List
 
-from election_maps.types import (
+from election_maps.custom_types import (
     VotingSessionType, ObserverActionType, ObserverActionStatusType
 )
 from election_maps.entities.candidates import Candidate

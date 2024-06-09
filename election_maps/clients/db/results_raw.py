@@ -1,6 +1,6 @@
 from election_maps.entities.action import ObserverAction, ObserverActionsCollection
 from election_maps.clients.db.base import BaseDatabaseHandler
-from election_maps.types import ObserverActionStatusType
+from election_maps.custom_types import ObserverActionStatusType
 
 
 class RawResultsDatabaseHandler(BaseDatabaseHandler):

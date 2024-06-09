@@ -1,6 +1,6 @@
 from flask import Response
 
-from election_maps.types import VotingSessionType, ObserverActionType
+from election_maps.custom_types import VotingSessionType, ObserverActionType
 from election_maps.clients.db.results_raw import RawResultsDatabaseHandler
 from election_maps.clients.db.users import UsersDatabaseHandler
 from election_maps.entities.action import ObserverAction

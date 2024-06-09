@@ -4,7 +4,7 @@ from flask import Flask
 
 from election_maps.clients.db.results_raw import RawResultsDatabaseHandler
 from election_maps.clients.db.results import ResultsDatabaseHandler
-from election_maps.types import ObserverActionStatusType, VotingSessionType
+from election_maps.custom_types import ObserverActionStatusType, VotingSessionType
 
 
 LOCAL_URL = 'http://127.0.0.1:8000'
