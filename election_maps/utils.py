@@ -33,11 +33,11 @@ def process_actions(
     observer_id: Optional[str] = None
 ):
     if observer_id:
-        actions = raw_results_db_handler.get_acknowledged_actions_for_observer(
+        actions = raw_results_db_handler.get_actions_to_process_by_observer_id(
             observer_id=observer_id
         )
     else:
-        actions = raw_results_db_handler.get_acknowledged_actions()
+        actions = raw_results_db_handler.get_actions_to_process()
 
     if len(actions) == 0:
         return
