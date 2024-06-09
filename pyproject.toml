@@ -2,7 +2,7 @@
 name = "Election-maps"
 version = "0.1.0"
 dependencies = [
-    "pyutils @ git+ssh://git@github.com/a96tudor/pyutils",
+    "pyutils @ git+https://github.com/a96tudor/pyutils.git",
     "flask",
     "boto3",
     "flask-cors",
